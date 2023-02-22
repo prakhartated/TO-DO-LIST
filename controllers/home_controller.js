@@ -1,13 +1,14 @@
-const Todo = require('../models/Todo');
+const Task = require("../models/task");
 
-module.exports.home = function (req , res) {
-    Todo.find({} , function (err , todo) {
+module.exports.home = function (req, res) {
+    Task.find({}, function (err, tasks) {
         if (err) {
             console.log(err);
             return;
         }
 
-        // return res.render('home' , { title: 'home', task_list: tasks });
-        return res.render('home' , { title: 'home', to_do_db: todo });
-    })    
+        return res.render('home', { title: 'home', to_do_db: tasks });
+
+    })
+
 }

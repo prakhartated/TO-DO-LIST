@@ -1,32 +1,21 @@
-// Acquiring Express
 const express = require('express');
 const bodyParser = require('body-parser');
-
-// Using Express
 const app = express();
-
-// Assigning Port
 const port = 8000;
-
-// Mongoose
 const mongoose = require('./config/mongoose');
-const Todo = require('./models/Todo');
-
-// Use Express Router
-app.use('/' , require('./routes/index'));
+const task = require('./models/task');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('assets'));
-
-// View Engine
+app.use('/', require('./routes'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// Check if Port is running or not
-app.listen(port , function (err) {
+
+app.listen(port, function (err) {
     if (err) {
-        console.log(`Error in running the server : ${err}`);
+        console.log(`Oops! error: ${err}  occured while trying to run the server`);
         return;
     }
-
-    console.log(`Server is running on the port : ${port}`);
-});
+    console.log(`The server is succesfully running on port: ${port}`);
+    return;
+})
